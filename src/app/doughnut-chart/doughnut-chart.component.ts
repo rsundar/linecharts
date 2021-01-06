@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MultiDataSet, Label } from 'ng2-charts';
-import { ChartType } from 'chart.js';
+import { ChartType, ChartOptions } from 'chart.js';
 import rest from '../../assets/rest.json';
 
 @Component({
@@ -13,6 +13,9 @@ export class DoughnutChartComponent implements OnInit {
   private memory;
   public donutChartType: ChartType = "doughnut";
   public donutChartData: MultiDataSet = [];
+  public donutChartOptions: ChartOptions = {
+	cutoutPercentage: 80,
+  };
   public donutChartLabels: Label[] = ['used','free'];
 
   constructor() { }
