@@ -13,7 +13,7 @@ export class DoughnutChartComponent implements OnInit {
   private memory;
   public donutChartType: ChartType = "doughnut";
   public donutChartData: MultiDataSet = [];
-  public donutChartLabels: Label[] = ['free','used'];
+  public donutChartLabels: Label[] = ['used','free'];
 
   constructor() { }
 
