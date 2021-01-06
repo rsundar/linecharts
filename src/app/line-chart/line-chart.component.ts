@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ChartOptions, ChartDataSets } from 'chart.js';
-import { Color, Label } from 'ng2-charts';
+import { ChartOptions, ChartDataSets, ChartType } from 'chart.js';
+import { Color, Label, MultiDataSet } from 'ng2-charts';
 import statistics from '../../assets/statistics.json';
 
 @Component({
@@ -12,22 +12,24 @@ import statistics from '../../assets/statistics.json';
 export class LineChartComponent implements OnInit {
   
   stats: any = (statistics as any)._default;
-  
+
   private percent: number[] = []; //this.stats.map(k => Object.keys(k).map(key => k[key]['percent']));
   private time: string[] = []; //this.stats.map(k => Object.keys(k).map(key => k[key]['time']));
-  
+
   //public lineChartData: ChartDataSets[] = [
   //	{ data: [88, 75, 77, 75, 74, 78] , label: 'cpu-percentage' }
   //];
 
   public lineChartData: ChartDataSets[] = [];
-
+  
   //public lineChartLabels: Label[] = ['1', '2', '3', '4', '5', '6'];
 
   public lineChartLabels: Label[] = [];
 
   public lineChartOptions = {
-	responsive: true,
+	responsive: false,
+	width: 400,
+	height: 400,
   };
 
   lineChartColors: Color[] = [
@@ -46,7 +48,8 @@ export class LineChartComponent implements OnInit {
 		this.percent.push(this.stats[key]['percent']);
 		this.time.push(this.stats[key]['time']);
 	}
-	console.log("Percent: ",this.percent," Time= ",this.time);
+
+	console.log("Percent: ",this.percent," Time= ",this.time, "Memory:", this.memory, "Swap:", this.swap, "Disk:", this.disk);
 	this.lineChartData = [
 		{ data: this.percent, label: 'cpu-usage' }
 	];
