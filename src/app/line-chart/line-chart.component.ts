@@ -49,7 +49,6 @@ export class LineChartComponent implements OnInit {
 		this.time.push(this.stats[key]['time']);
 	}
 
-	console.log("Percent: ",this.percent," Time= ",this.time, "Memory:", this.memory, "Swap:", this.swap, "Disk:", this.disk);
 	this.lineChartData = [
 		{ data: this.percent, label: 'cpu-usage' }
 	];
