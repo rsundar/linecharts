@@ -5,8 +5,7 @@ import psutil
 import json
 import os
 
-os.chdir('/home/vagrant/angular-chartjs/src/assets')
-db = TinyDB('statistics.json')
+db = TinyDB('src/assets/statistics.json')
 query = Query()
 
 def keepItFresh():
@@ -35,6 +34,7 @@ def main():
     else:
         db.insert(cpu)
     
+    os.chdir('src/assets')
     with open("rest.json","w") as outfile:
         json.dump(rest, outfile)
 

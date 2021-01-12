@@ -16,7 +16,7 @@ export class DoughnutChartComponent implements OnInit {
   public donutChartOptions: ChartOptions = {
 	responsive: true,
 	maintainAspectRatio: false,
-	cutoutPercentage: 80,
+	cutoutPercentage: 90,
   };
   public donutChartLabels: Label[] = ['used','free'];
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ChartOptions, ChartDataSets, ChartType } from 'chart.js';
 import { Color, Label, MultiDataSet } from 'ng2-charts';
 import statistics from '../../assets/statistics.json';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-line-chart',
@@ -43,7 +44,7 @@ export class LineChartComponent implements OnInit {
   public lineChartPlugins = [];
   public lineChartType = "line";
 
-  constructor() {
+  constructor(private httpClient: HttpClient) {
 	for(var key of Object.keys(this.stats)) {
 		this.percent.push(this.stats[key]['percent']);
 		this.time.push(this.stats[key]['time']);
@@ -53,9 +54,18 @@ export class LineChartComponent implements OnInit {
 		{ data: this.percent, label: 'cpu-usage' }
 	];
 	this.lineChartLabels = this.time;
+	//setTimeout(() => this.getData(),3000);
+	this.getData();
   }
 
   ngOnInit(): void {
   }
-
+  
+  getData() {
+	this.httpClient.get("../../assets/statistics.json").subscribe( data => {
+			    console.log("Inside getData:", data);
+	});
+	setTimeout(() => this.getData(), 3000);
+  }
 }
+
