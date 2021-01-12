@@ -63,7 +63,12 @@ export class LineChartComponent implements OnInit {
   
   getData() {
 	this.httpClient.get("../../assets/statistics.json").subscribe( data => {
-			    console.log("Inside getData:", data);
+			this.stats = data;
+			for(var key of Object.keys(this.stats)) {
+				this.percent.push(this.stats[key]['cpu']);
+				this.time.push(this.stats[key]['time']);
+			}
+			console.log("Data:",this.percent, this.time);
 	});
 	setTimeout(() => this.getData(), 3000);
   }
